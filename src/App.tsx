@@ -6,6 +6,7 @@ import WhatsAppButton from './components/WhatsAppButton';
 import Home from './pages/Home';
 import About from './pages/About';
 import Products from './pages/Products';
+import AllProducts from './pages/AllProducts';
 import Quality from './pages/Quality';
 import Sustainability from './pages/Sustainability';
 import ExportMarkets from './pages/ExportMarkets';
@@ -55,6 +56,7 @@ function AppContent() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/products/all" element={<AllProducts />} />
           <Route path="/quality" element={<Quality />} />
           <Route path="/sustainability" element={<Sustainability />} />
           <Route path="/export-markets" element={<ExportMarkets />} />
