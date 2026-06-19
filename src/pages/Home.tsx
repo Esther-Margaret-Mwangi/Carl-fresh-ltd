@@ -3,15 +3,17 @@ import {
   Shield, Award, Leaf, ScanSearch,
   BadgeCheck, Sprout, Link2, Thermometer,
   Globe, FileText, MessageCircle, Mail,
-  ArrowRight, CheckCircle2,
+  ArrowRight, CheckCircle2, Package, Wheat
 } from 'lucide-react';
+import HeroBannerr from '../assets/HeroBannerr.png';
+import AboutBanner from '../assets/AboutBanner.png';
 import '../styles/home.css';
 
 const stats = [
-  { number: '500+', label: 'Tonnes Exported Annually' },
-  { number: '15+',  label: 'Countries Served' },
-  { number: '8+',   label: 'Premium Products' },
-  { number: '100%', label: 'Sustainably Grown' },
+  { icon: Package, number: '500+', label: 'Tonnes Exported Annually' },
+  { icon: Globe, number: '15+',  label: 'Countries Served' },
+  { icon: Wheat, number: '8+',   label: 'Premium Products' },
+  { icon: Leaf, number: '100%', label: 'Sustainably Grown' },
 ];
 
 const whyChoose = [
@@ -84,8 +86,12 @@ export default function Home() {
     <main>
       {/* ── Hero ── */}
       <section className="hero" aria-label="Hero">
-        <div className="hero-bg-image loaded" role="img" aria-label="Fresh produce farm in Kenya" />
-        <div className="hero-bg" />
+        <div
+          className="hero-bg-image loaded"
+          role="img"
+          aria-label="Fresh produce farm in Kenya"
+          style={{ backgroundImage: `url(${HeroBannerr})` }}
+        />
 
         <div className="container-xl" style={{ position: 'relative', zIndex: 2, width: '100%' }}>
           <div className="hero-content">
@@ -101,8 +107,7 @@ export default function Home() {
             </h1>
 
             <p className="hero-subtitle">
-              Sustainably Grown in Kenya — connecting global buyers with the finest
-              fresh fruits, vegetables, herbs and spices Kenya has to offer.
+              Sustainably Grown in Kenya
             </p>
 
             <div className="hero-actions">
@@ -112,7 +117,7 @@ export default function Home() {
               <Link to="/contact#quote" className="btn-gold">
                 <FileText size={16} /> Request a Quote
               </Link>
-              <Link to="/contact" className="btn-outline-white">
+              <Link to="/contact" className="btn-secondary">
                 Contact Us
               </Link>
             </div>
@@ -138,12 +143,23 @@ export default function Home() {
       <section className="stats-bar" aria-label="Key statistics">
         <div className="container-xl">
           <div className="stats-bar-inner">
-            {stats.map((s) => (
-              <div key={s.label} className="stats-bar-item">
-                <div className="stats-bar-number">{s.number}</div>
-                <div className="stats-bar-label">{s.label}</div>
-              </div>
-            ))}
+            {stats.map((s) => {
+                const Icon = s.icon;
+
+                return (
+                  <div key={s.label} className="stats-bar-item">
+                    <Icon className="stats-icon" />
+
+                    <div className="stats-bar-number">
+                      {s.number}
+                    </div>
+
+                    <div className="stats-bar-label">
+                      {s.label}
+                    </div>
+                  </div>
+                );
+              })}
           </div>
         </div>
       </section>
@@ -154,7 +170,7 @@ export default function Home() {
           <div className="about-strip-grid">
             <div className="about-strip-image">
               <img
-                src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=700&q=80"
+                src={AboutBanner}
                 alt="Farm workers harvesting fresh produce in Kenya"
                 loading="lazy"
               />
