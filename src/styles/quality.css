@@ -139,62 +139,58 @@
   background: var(--color-off-white);
 }
 
-.certs-display-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+.logo-carousel {
+  overflow: hidden;
   margin-top: 3rem;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #fff 8%, #fff 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #fff 8%, #fff 92%, transparent);
 }
 
-.cert-display-card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 2rem 1.5rem;
-  text-align: center;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-  transition: all 0.3s;
+.logo-carousel-track {
+  display: flex;
+  align-items: center;
+  gap: 4.5rem;
+  width: max-content;
+  animation: logo-carousel-scroll 22s linear infinite;
 }
 
-.cert-display-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+.logo-carousel:hover .logo-carousel-track {
+  animation-play-state: paused;
 }
 
-.cert-display-card .cert-badge {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--color-green-primary), var(--color-green-mid));
+.logo-carousel-item {
+  flex-shrink: 0;
+  height: 70px;
+  width: 160px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  margin: 0 auto 1.25rem;
-  color: #fff;
 }
 
-.cert-display-card h3 {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--color-green-primary);
-  margin-bottom: 0.4rem;
+.logo-carousel-item img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  filter: grayscale(20%);
+  opacity: 0.85;
+  transition: opacity 0.25s, filter 0.25s;
 }
 
-.cert-display-card p {
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  color: var(--color-gray-mid);
-  line-height: 1.6;
+.logo-carousel-item:hover img {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
+@keyframes logo-carousel-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 @media (max-width: 1024px) {
   .quality-intro-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .quality-pillars-grid { grid-template-columns: 1fr 1fr; }
-  .certs-display-grid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 640px) {
   .quality-pillars-grid { grid-template-columns: 1fr; }
-  .certs-display-grid { grid-template-columns: 1fr 1fr; }
 }
