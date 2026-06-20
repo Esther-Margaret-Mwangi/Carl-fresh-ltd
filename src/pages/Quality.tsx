@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import {
   FlaskConical,
@@ -75,6 +76,10 @@ const certLogos = [
   { name: "GlobalG.A.P. Certification", src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF66YakFORitWD-dDtv_C0r8E6mUrCibgMkA&s" },
   { name: "KEPHIS Certification", src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzqEraxN-nY2x-K850ktpHtp_Lt2fdr1HxyQ&s" },
 ];
+
+// Repeated so a single half of the track is always wider than the viewport —
+// otherwise the loop shows a blank gap before the duplicated half scrolls in.
+const loopedCertLogos = Array.from({ length: 5 }, () => certLogos).flat();
 
 const divider = (margin = "1rem auto") => (
   <div className="divider-gold" style={{ margin }} />
@@ -163,7 +168,7 @@ export default function Quality() {
             {pillars.map(({ Icon, title, desc }) => (
               <div key={title} className="pillar-card">
                 <div className="icon">
-                  <Icon size={28} strokeWidth={1.6} />
+                  <Icon size={24} strokeWidth={1.75} />
                 </div>
                 <h3>{title}</h3>
                 <p>{desc}</p>
@@ -186,27 +191,27 @@ export default function Quality() {
             </p>
           </div>
 
-          <div style={{ maxWidth: "700px", margin: "0 auto" }}>
-            <div className="haccp-steps">
-              {haccpSteps.map((step) => (
-                <div key={step.num} className="haccp-step">
+          <div className="haccp-steps-horizontal">
+            {haccpSteps.map((step, i) => (
+              <Fragment key={step.num}>
+                <div className="haccp-step-h">
                   <div className="haccp-step-number">{step.num}</div>
-                  <div className="haccp-step-content">
+                  <div className="haccp-step-text">
                     <h4>{step.title}</h4>
                     <p>{step.desc}</p>
                   </div>
                 </div>
-              ))}
-            </div>
+                {i < haccpSteps.length - 1 && (
+                  <div className="haccp-step-connector" />
+                )}
+              </Fragment>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Certifications */}
-      <section
-        className="certs-display page-section"
-        style={{ background: "#fff" }}
-      >
+      <section className="certs-display page-section">
         <div className="container-xl">
           <div style={{ textAlign: "center" }}>
             <div className="section-label">Certifications</div>
@@ -220,7 +225,7 @@ export default function Quality() {
 
           <div className="logo-carousel">
             <div className="logo-carousel-track">
-              {[...certLogos, ...certLogos].map((logo, i) => (
+              {[...loopedCertLogos, ...loopedCertLogos].map((logo, i) => (
                 <div className="logo-carousel-item" key={`${logo.name}-${i}`}>
                   <img src={logo.src} alt={logo.name} loading="lazy" />
                 </div>
