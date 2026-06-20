@@ -12,6 +12,7 @@ import {
   Waves,
 } from "lucide-react";
 import "../styles/sustainability.css";
+import skyBasketImg from "../assets/images/sbanner.png";
 
 const pillars = [
   {
@@ -202,7 +203,12 @@ export default function Sustainability() {
       </section>
 
       {/* Metrics */}
-      <section className="sustainability-metrics page-section">
+      <section
+        className="sustainability-metrics page-section"
+        style={{
+          backgroundImage: `linear-gradient(135deg, rgba(10,38,16,0.88), rgba(27,94,32,0.79)), url(${skyBasketImg})`,
+        }}
+      >
         <div className="container-xl">
           <div style={{ textAlign: "center" }}>
             <div
@@ -240,7 +246,7 @@ export default function Sustainability() {
           <div className="community-grid">
             <div className="community-image">
               <img
-                src="https://images.unsplash.com/photo-1592979585344-4ca01a9fe0ca?w=700&q=80"
+                src="https://gggi.org/wp-content/uploads/2022/06/CSA-training-of-producers.jpeg"
                 alt="Carl Fresh community development in Kenya"
                 loading="lazy"
               />
